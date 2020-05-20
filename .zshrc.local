@@ -1,0 +1,1 @@
+alias env-activate="source ./env/bin/activate"

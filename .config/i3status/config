@@ -1,0 +1,123 @@
+# github.com/rafi i3status config
+
+# i3status configuration file
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+    colors = true
+    color_good = "#BBBBBB"
+    color_bad = "#CC1616"
+    color_degraded = "#55858E"
+    interval = 2
+}
+order += "volume_status"
+order += "load"
+order += "cpu_usage"
+order += "disk /"
+order += "disk /home"
+#order += "ethernet wlp2s0"
+order += "tztime local"
+order += "pomodoro"
+order += "wifi"
+order += "backlight"
+order += "battery_level"
+order += "keyboard_layout"
+
+#volume master {
+##masterformat = " ♪: %volume  " 
+#    device = "pulse"
+#    mixer = "Master"
+#    mixer_idx = 1
+#    # termsyn font
+#    format = "♪ %volume "
+#}
+
+volume_status {
+    button_up = 4
+    button_down = 5
+    button_mute = 2
+    command = "pamixer"
+    device = 0
+
+    thresholds = [
+        (0, "#FF0000"),
+        (10, "#E2571E"),
+        (20, "#FF7F00"),
+        (30, "#FFFF00"),
+        (40, "#00FF00"),
+        (50, "#96BF33"),
+        (60, "#0000FF"),
+        (70, "#4B0082"),
+        (80, "#8B00FF"),
+        (90, "#FFFFFF")
+    ]
+}
+
+battery_level {
+	format = "{icon} {percent}%"
+}
+
+load {
+#loadformat = " Δ: %1min "
+    # termsyn font
+    format = "Δ: %1min"
+    # termsyn font
+}
+
+cpu_usage {
+    format = "CPU: %usage "
+}
+
+disk "/" {
+    format = "/:%avail" 
+}
+disk "/home" {
+    format = "/home:%avail"
+}
+
+
+
+ethernet wlp2s0 {
+    # if you use %speed, i3status requires root privileges
+#privilegesformat_up =  " Ω: %ip  "
+#ipformat_down = " ∅ eth0  "
+
+    # termsyn font
+    format_up = "E: %ip (%speed)"
+    format_down = " wifi down "
+}
+
+backlight {
+	brightness_delta = 10
+}
+
+tztime local {
+#localformat = " %h-%d %H:%M ☰ "
+    # termsyn font
+    format = " %h-%d | %H:%M "
+}
+
+pomodoro {
+    format = "{mmss} {bar}"
+    sound_break_end = '~/.config/i3status/breakEnd.mp3'
+    sound_pomodor_end = '~/.config/i3status/pomodoroStop.mp3'
+}
+
+
+mpd_status {
+    format = "{state} [[[{artist} - ]{title}]|[{file}]]"
+    state_pause = '⏸ '
+    state_play = '▶'
+}
+
+keyboard_layout {
+    cache_timeout = 1
+    color_us = '#729FCF'
+    color_de = '#f45642'
+#    color_ru = '#F75252'
+}
