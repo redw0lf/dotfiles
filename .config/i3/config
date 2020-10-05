@@ -29,7 +29,7 @@ font pango:monospace 8
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-bindsym $mod+Scroll_Lock exec xscreensaver-command -lock
+bindsym $mod+Pause exec i3lock-fancy-rapid 5 3 -t "Try your luck!"
 bindsym --release Print exec scrot -s -e 'mv $f /tmp/ && xclip -selection "clipboard" -t image/png /tmp/$f'
 
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10

@@ -41,8 +41,7 @@ volume_status {
     button_up = 4
     button_down = 5
     button_mute = 2
-    command = "pamixer"
-    device = 0
+    command = "pactl"
 
     thresholds = [
         (0, "#FF0000"),
