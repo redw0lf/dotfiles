@@ -34,8 +34,10 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 exec udiskie --use-udisks2 &
+exec sh ~/.screenlayout/primary.sh &
+exec xautolock -time 10 -locker "i3lock-fancy-rapid 4 3 -t 'Good Luck'" -detectsleep -corners +00- &
 exec nm-applet &
-exec xscreensaver -no-splash &
-exec nextcloud &
-exec blueberry-tray &
+exec /home/janosch/bin/unity_glitch_fix.sh & 
+exec ~/.fehbg &
+exec setxkbmap -layout "us,us,de" -variant ",colemak_dh,"  &
 exec i3

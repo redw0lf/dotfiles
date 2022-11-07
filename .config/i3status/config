@@ -15,6 +15,7 @@ general {
     color_degraded = "#55858E"
     interval = 2
 }
+order += "lm_sensors"
 order += "volume_status"
 order += "load"
 order += "cpu_usage"
@@ -24,8 +25,6 @@ order += "disk /home"
 order += "tztime local"
 order += "pomodoro"
 order += "wifi"
-order += "backlight"
-order += "battery_level"
 order += "keyboard_layout"
 
 #volume master {
@@ -44,17 +43,26 @@ volume_status {
     command = "pactl"
 
     thresholds = [
-        (0, "#FF0000"),
-        (10, "#E2571E"),
-        (20, "#FF7F00"),
-        (30, "#FFFF00"),
-        (40, "#00FF00"),
-        (50, "#96BF33"),
-        (60, "#0000FF"),
-        (70, "#4B0082"),
-        (80, "#8B00FF"),
-        (90, "#FFFFFF")
+        (0, "#FFFFFF"),
+        (10, "#ddfad3"),
+        (20, "#bdf4ab"),
+        (30, "#a1f087"),
+        (40, "#72e94b"),
+        (50, "#37e000"),
+        (60, "#44ca06"),
+        (70, "#53b00e"),
+        (80, "#4a9f0d"),
+        (90, "#ff1616")
     ]
+    cache_timeout = 1
+}
+
+lm_sensors {
+    format_chip = '[\?if=name=coretemp-isa-0000 CPU ]'
+    format_chip += '[\?if=name=nouveau-pci-0500 GPU ]'
+    format_chip += '{format_sensor}'
+    format_sensor = '\?color=auto.input {input}°C'
+    sensors = ['core*']
 }
 
 battery_level {
@@ -81,7 +89,7 @@ disk "/home" {
 
 
 
-ethernet wlp2s0 {
+ethernet wlan0 {
     # if you use %speed, i3status requires root privileges
 #privilegesformat_up =  " Ω: %ip  "
 #ipformat_down = " ∅ eth0  "
